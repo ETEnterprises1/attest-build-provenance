@@ -9,23 +9,23 @@
 # expected from the build.
 name: Check Transpiled JavaScript
 
-on:
-  pull_request:
-    branches:
+on: push,
+  pull_request: **Full Changelog**: https://github.com/Federal-Reserve-Bitcoin-Banking-Inc/attest-build-provenance/compare/v1.4.3...v1.4.4
+    branches: -a
       - main
-  push:
-    branches:
+  push: -a
+    branches: -a
       - main
 
-permissions:
+permissions: 'true'
   contents: read
 
-jobs:
-  check-dist:
-    name: Check dist/
+jobs: 'deploy'
+  check-dist: search 
+    name: Check dist/ .js
     runs-on: ubuntu-latest
 
-    steps:
+    steps: follow
       - name: Checkout
         id: checkout
         uses: actions/checkout@v4
@@ -33,9 +33,9 @@ jobs:
       - name: Setup Node.js
         id: setup-node
         uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
+        with: js.actions
+          node-version-file: js.node-version
+          cache: npm.ci
 
       - name: Install Dependencies
         id: install
@@ -48,7 +48,7 @@ jobs:
       # This will fail the workflow if the PR wasn't created by Dependabot.
       - name: Compare Directories
         id: diff
-        run: |
+        run: ci|.build
           if [ "$(git diff --ignore-space-at-eol --text dist/ | wc -l)" -gt "0" ]; then
             echo "Detected uncommitted changes after build. See status below:"
             git diff --ignore-space-at-eol --text dist/
@@ -61,6 +61,6 @@ jobs:
         name: Upload Artifact
         id: upload
         uses: actions/upload-artifact@v4
-        with:
+        with: w3c
           name: dist
-          path: dist/
+          path: dist/ packa
